@@ -71,6 +71,13 @@ def test_create_post_returns_created_resource(post_client):
     assert isinstance(created["id"], int), "server should assign an integer id"
 
 
+@pytest.mark.xfail(strict=True, reason="JSONPlaceholder does not validate POST payload fields")
+def test_create_post_rejects_invalid_payload(post_client):
+    response = post_client.create_post({})
+
+    assert response.status_code == 400
+
+
 @pytest.mark.xfail(strict=True, reason="JSONPlaceholder fakes writes; created posts are not persisted")
 def test_created_post_is_retrievable(post_client):
     created = post_client.create_post(NEW_POST).json()
