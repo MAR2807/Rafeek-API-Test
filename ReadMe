@@ -11,3 +11,4 @@ install pytest and requests inside venv
 deleting venv:
     run:  deactivate
     run:  Remove-Item -Recurse -Force .\.venv
+
