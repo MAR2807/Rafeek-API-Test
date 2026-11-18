@@ -1,14 +1,60 @@
+# JSONPlaceholder API Test Suite
 
-install python:
+## Overview
+
+This project contains pytest API tests for the JSONPlaceholder posts and users resources.
+
+- API: [JSONPlaceholder](https://jsonplaceholder.typicode.com)
+- Stack: Python, pytest, and the Requests library
+
+## Setup
+
+Create and activate a virtual environment from the project root:
+
+```powershell
 python -m venv .venv
-
-create venv at root
 .\.venv\Scripts\Activate.ps1
+```
 
-install pytest and requests inside venv
+Install the dependencies:
 
+```powershell
+pip install -r requirements.txt
+```
 
-deleting venv:
-    run:  deactivate
-    run:  Remove-Item -Recurse -Force .\.venv
+To remove the virtual environment:
+
+```powershell
+deactivate
+Remove-Item -Recurse -Force .\.venv
+```
+
+## Run
+
+Run the test suite:
+
+```powershell
+pytest -v
+```
+
+## Coverage
+
+| Endpoint | Method | What is checked |
+|---|---|---|
+| `/posts` | GET | Returns 100 posts with the expected fields and types |
+| `/posts/{id}` | GET | Valid post returns `200`; nonexistent IDs return `404` and `{}` |
+| `/posts?userId={id}` | GET | Every result belongs to the requested user; unknown users return `[]` |
+| `/posts` | POST | Returns `201`, echoes the submitted fields, and includes an integer ID |
+| `/posts/{id}` | PUT | Returns `200` and replaces the post with the submitted fields |
+| `/posts/{id}` | PATCH | Returns `200` and changes only the requested field |
+| `/posts/{id}` | DELETE | Returns `200` and an empty object |
+| `/posts/{id}/comments` | GET | Returns comments for the requested post |
+| `/comments?postId={id}` | GET | Returns the same comments as the nested comments route |
+| `/users` | GET | Confirms every post's `userId` belongs to a real user |
+
+## Known limitations
+
+- JSONPlaceholder fakes write operations; created posts are not saved, so the retrieval test for a created post is marked with `xfail`.
+- JSONPlaceholder does not validate input for the write endpoints.
+- Tests depend on JSONPlaceholder's fixed seed data. For example, user `5` owns posts `41-50`, and only IDs `1-100` are defined for posts.
 
