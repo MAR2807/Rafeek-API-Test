@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project contains pytest API tests for the JSONPlaceholder posts and users resources.
+This project contains pytest API tests for the JSONPlaceholder posts, comments, and users resources. Tests run automatically on every push via GitHub Actions.
 
 - API: [JSONPlaceholder](https://jsonplaceholder.typicode.com)
 - Stack: Python, pytest, and the Requests library
@@ -20,13 +20,6 @@ Install the dependencies:
 
 ```powershell
 pip install -r requirements.txt
-```
-
-To remove the virtual environment:
-
-```powershell
-deactivate
-Remove-Item -Recurse -Force .\.venv
 ```
 
 ## Run
