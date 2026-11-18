@@ -51,3 +51,10 @@ pytest -v
 - JSONPlaceholder does not validate input for the write endpoints.
 - Tests depend on JSONPlaceholder's fixed seed data. For example, user `5` owns posts `41-50`, and only IDs `1-100` are defined for posts.
 
+
+## AI Usage
+- Claude and github copilot were used to 
+- correct syntax 
+- suggest improvements to existing test cases 
+- suggest additions to test cases
+
